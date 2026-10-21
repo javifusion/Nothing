@@ -231,7 +231,7 @@
   /* ---------- progress (survives refresh; harmless if storage is blocked) ---------- */
   const state = { dot: false, hover: false, footer: false, knock: false, void: false, solved: false };
   try {
-    if (/[?&]reset\b/.test(location.search)) {
+    if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
       localStorage.removeItem(CONFIG.storageKey);
       history.replaceState(null, '', location.pathname);
     } else {
