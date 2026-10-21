@@ -7,10 +7,7 @@
 <meta name="color-scheme" content="dark">
 <title>Nothing to see here</title>
 <style>
-  /* ------------------------------------------------------------------
-     Theme tokens. The ".lit" class is added to <html> after the final
-     phrase is solved; it simply warms the palette.
-     ------------------------------------------------------------------ */
+ 
   :root {
     --bg:    #111113;
     --fg:    #6d6d74;
@@ -183,13 +180,9 @@
 (() => {
   'use strict';
 
-  /* ====================================================================
-     CONFIG — everything you are likely to want to change lives here.
-     ==================================================================== */
+  
   const CONFIG = {
-    // The secret phrase is these words joined by spaces. Word order matters.
-    // Words 1 and 2 are shown by on-page discoveries. Word 3 appears in an
-    // element attribute and word 4 as a letter pattern in the console.
+  
     words: ['the', 'quiet', 'room', 'remembers'],
 
     // Typed on the keyboard (anywhere on the page, no Enter key needed).
@@ -199,7 +192,7 @@
     footerPresses: 3,
     footerGapMs: 1500,
 
-    // Where progress is remembered. Append ?reset to the URL to wipe it.
+    
     storageKey: 'nts.progress.v1',
 
     // Shown after the correct phrase is entered. Plain text only.
@@ -276,25 +269,21 @@
   }
   const normalise = (s) => String(s).toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
 
-  /* ---------- runtime-written clues (visible in the Elements panel) ---------- */
+ 
   el.whisper.dataset.whisper = '2/' + N + ' · ' + W[1];       // also revealed by hover
   el.voidEl.setAttribute('data-fragment', '3/' + N + ' · ' + W[2]);
 
-  /* ---------- console clues ---------- */
+
   console.log('%cNothing to see here.', 'color:#777;font:13px monospace');
   console.log("%cA sentence isn't finished until you've checked the full stop.", 'color:#555;font:12px monospace');
 
-  /* ====================================================================
-     EASTER EGG 1: the full stop at the end of the heading
-     ==================================================================== */
+
   el.dot.addEventListener('click', () => {
     if (state.dot) return;
     state.dot = true; save(); addLine('dot');
   });
 
-  /* ====================================================================
-     EASTER EGG 2: hover (or keyboard-focus) the word "empty"
-     ==================================================================== */
+
   function onWhisper() {
     if (state.hover) return;
     state.hover = true; save(); addLine('hover');
@@ -302,9 +291,7 @@
   el.whisper.addEventListener('mouseenter', onWhisper);
   el.whisper.addEventListener('focus', onWhisper);
 
-  /* ====================================================================
-     EASTER EGG 3: the footer. Press the (c) symbol a few times, quickly.
-     ==================================================================== */
+
   let presses = 0, pressTimer = null;
   function onFooter() {
     el.c.classList.add('pulse');
